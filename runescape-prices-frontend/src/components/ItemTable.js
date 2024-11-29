@@ -27,7 +27,7 @@ const ItemsTable = () => {
 
     fetchInitialData();
 
-    const itemsSocket = new WebSocket('ws://YOUR_BACKEND_URL/ws/items');
+    const itemsSocket = new WebSocket('http://localhost:8000/ws/itmes');
     itemsSocket.onmessage = (event) => {
       const message = JSON.parse(event.data);
       if (message.type === 'items') {
@@ -35,7 +35,7 @@ const ItemsTable = () => {
       }
     };
 
-    const pricesSocket = new WebSocket('ws://YOUR_BACKEND_URL/ws/prices');
+    const pricesSocket = new WebSocket('http://localhost:8000/ws/prices');
     pricesSocket.onmessage = (event) => {
       const message = JSON.parse(event.data);
       if (message.type === 'prices') {
