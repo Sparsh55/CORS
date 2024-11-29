@@ -5,6 +5,7 @@ import './App.css';
 import Homepage from './components/HomePage.js';
 import Loder from './components/Loder.js';
 import { useEffect, useState } from 'react';
+import Footer from './components/Footer.js';
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -29,6 +30,7 @@ const App = () => {
           <Route path="/table" element={<ItemTable />} />
           {/* You can add more routes here for other components */}
         </Routes>
+         <Footer/>
       </div>
     </Router>
   );
