@@ -1,10 +1,16 @@
 // src/components/ItemsTable.js
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setItems, updateItems, setPrices, updatePrices } from '../redux/itemSlices';
+import { handleSort } from './Utils';
 import Pagination from './Pagination';
+import { Link } from 'react-router-dom';
 
 const ItemsTable = () => {
+  const [sortOrder, setSortOrder] = useState('asc');
+  const [sortBy, setSortBy] = useState('price');
+  const [viewItem, setViewItem] = useState([]);
+
   const dispatch = useDispatch();
   const { items, prices, currentPage, itemsPerPage } = useSelector((state) => state.items);
 
@@ -46,10 +52,26 @@ const ItemsTable = () => {
   // Pagination logic
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = items.slice(indexOfFirstItem, indexOfLastItem);
+  let currentItems = items.slice(indexOfFirstItem, indexOfLastItem);
 
+
+  useEffect(() => {
+     const sortedItems = handleSort(currentItems, sortBy, sortOrder);
+     setViewItem(sortedItems);
+  // },[sortBy, sortOrder, currentItems]);
+  },[]);
   return (
     <div style={{ width:"100vw"}}>
+      <div style={{display:"flex", justifyContent:"center"}}>
+      <Link to = "/"><button>Back to Home</button></Link></div>
+      <select onChange={(e) => setSortBy(e.target.value)}>
+        <option value="price">Sort By Price</option>
+        <option value="name">Sort By Name</option>
+      </select>
+      <select onChange={(e) => setSortOrder(e.target.value)}>
+        <option value="asc">A-Z</option>
+        <option value="dsc">Z-A</option>
+      </select>
       <table>
         <thead>
           <tr>
@@ -59,7 +81,7 @@ const ItemsTable = () => {
           </tr>
         </thead>
         <tbody>
-          {currentItems.map((item) => {
+          {viewItem.map((item) => {
             const price = prices.find((price) => price.item_id === item.id)?.price || 'N/A';
             return (
               <tr key={item.id}>
