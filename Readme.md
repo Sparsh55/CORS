@@ -2,6 +2,7 @@
 
 ## Introduction
 This project is a full-stack web application that uses React and Redux for the frontend, and FastAPI for the backend with PostgreSQL as the database, managed using pgAdmin.
+Note:- Api's are not deplyed on production ,can be tested using postman also the databse is running localy so install pgadmin in your local device then create a databse as named in the api and then use it (my local user and passsowrd - postgrey,sparsh123)
 
 ## ScreenShots
 
