@@ -3,6 +3,12 @@
 ## Introduction
 This project is a full-stack web application that uses React and Redux for the frontend, and FastAPI for the backend with PostgreSQL as the database, managed using pgAdmin.
 
+## ScreenShots
+
+![Capture](https://github.com/user-attachments/assets/5c912aa2-1cba-4244-9571-65f9851b55a5)
+
+![Capture1](https://github.com/user-attachments/assets/e8116bf2-c107-4152-954e-1a285043fc14)
+
 ## Table of Contents
 - [Introduction](#introduction)
 - [Project Structure](#project-structure)
